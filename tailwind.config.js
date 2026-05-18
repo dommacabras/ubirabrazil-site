@@ -1,0 +1,81 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        ocean: {
+          50: '#eef9ff',
+          100: '#daf1ff',
+          200: '#bde6ff',
+          300: '#8ed5ff',
+          400: '#58bcff',
+          500: '#329dff',
+          600: '#1b7df5',
+          700: '#1965e0',
+          800: '#1c54b5',
+          900: '#1d488f',
+          950: '#152d57',
+        },
+        forest: {
+          50: '#f1faf2',
+          100: '#dff3e1',
+          200: '#c0e6c5',
+          300: '#92d09c',
+          400: '#5fb16c',
+          500: '#3d934c',
+          600: '#2c763a',
+          700: '#245e30',
+          800: '#1f4b29',
+          900: '#1b3e23',
+          950: '#0c2213',
+        },
+        sand: {
+          50: '#fbf8f1',
+          100: '#f5edda',
+          200: '#ead9b3',
+          300: '#dec083',
+          400: '#d3a25a',
+          500: '#c98a3f',
+          600: '#b16f33',
+          700: '#8e542b',
+          800: '#754429',
+          900: '#623925',
+          950: '#371d12',
+        },
+        wood: {
+          50: '#f7f3ee',
+          100: '#ebe0d2',
+          200: '#d7c0a4',
+          300: '#bf9b76',
+          400: '#a87d57',
+          500: '#946648',
+          600: '#7d513d',
+          700: '#643f33',
+          800: '#54352e',
+          900: '#482e29',
+          950: '#291813',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+      },
+      animation: {
+        'fade-in-up': 'fadeInUp 0.6s ease-out',
+        float: 'float 3s ease-in-out infinite',
+      },
+      keyframes: {
+        fadeInUp: {
+          '0%': { opacity: 0, transform: 'translateY(20px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+      },
+    },
+  },
+  plugins: [],
+};

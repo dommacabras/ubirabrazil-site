@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply font-sans text-forest-950 bg-sand-50;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  ::selection {
+    @apply bg-ocean-300 text-forest-950;
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ocean-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-ocean-600/30 transition hover:bg-ocean-700 active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-forest-700 px-6 py-3 text-sm font-semibold text-forest-800 transition hover:bg-forest-700 hover:text-white active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10;
+  }
+  .section-title {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-900;
+  }
+  .section-eyebrow {
+    @apply mb-3 inline-block text-[16.2px] font-bold uppercase tracking-[0.2em] text-ocean-700;
+  }
+  .card {
+    @apply rounded-3xl bg-white shadow-sm ring-1 ring-black/5 transition;
+  }
+}
+
+/* Hide scrollbar but keep functionality (horizontal carousels) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
