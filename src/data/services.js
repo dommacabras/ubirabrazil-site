@@ -60,6 +60,7 @@ export const services = [
       'Charter a private boat for a day around the bay, or feel the adrenaline of a jet ski tour past iconic island points. Snorkeling stops included.',
     features: ['Captain included for boats', 'Safety training for jet skis', 'Snorkeling gear'],
     priceRange: '$$$',
+    price: 'US$ 40 / R$ 200',
     duration: '2 – 8 hours',
     groupSize: '1 – 12 people',
     cta: 'Charter Now',
