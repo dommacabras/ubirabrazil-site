@@ -36,7 +36,7 @@ export default function About() {
           <p className="mt-5 max-w-xl text-lg font-bold leading-relaxed text-forest-800">
             We’re a small team of locals obsessed with two things: the wild
             beauty of Santa Catarina and making it effortless for international
-            travelers to experience it. Pick from our seven signature
+            travelers to experience it. Pick from our eight signature
             experiences — or let us build the whole week for you.
           </p>
           <a href="#services" className="btn-secondary mt-8">

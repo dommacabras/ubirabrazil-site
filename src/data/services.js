@@ -68,6 +68,23 @@ export const services = [
     image: '/images/boat.jpg',
   },
   {
+    id: 'buggy',
+    name: 'Passeio de Buggy',
+    title: 'Dune Buggy Adventures',
+    description: 'Cruise the dunes and beaches of Floripa in a classic buggy.',
+    longDescription:
+      'Hit the famous dunes of Joaquina and the southern beaches in an open-top buggy. Sunset rides available — sandboarding stop included for the brave.',
+    features: ['Experienced driver', 'Sandboarding stop', 'Sunset option'],
+    priceRange: '$$',
+    price: 'US$ 40 / € 35 / R$ 200',
+    duration: '1.5 – 3 hours',
+    groupSize: '1 – 4 people',
+    cta: 'Hit the Dunes',
+    icon: 'Car',
+    image: '/images/buggy.jpg',
+    imagePosition: 'object-[center_60%]',
+  },
+  {
     id: 'hiking',
     name: 'Hiking Trails',
     title: 'Nature Immersion Treks',

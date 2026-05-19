@@ -18,7 +18,7 @@ export default function Services() {
           className="mx-auto max-w-2xl text-center"
         >
           <span className="section-eyebrow">Our Experiences</span>
-          <h2 className="section-title">Seven ways to fall for the island.</h2>
+          <h2 className="section-title">Eight ways to fall for the island.</h2>
           <p className="mt-4 text-forest-700">
             Tap any card for full details, pricing and booking — WhatsApp or
             crypto, your call.
