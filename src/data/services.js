@@ -85,6 +85,22 @@ export const services = [
     imagePosition: 'object-[center_60%]',
   },
   {
+    id: 'motorcycle',
+    name: 'Motorcycle Rent',
+    title: 'Explore the Island on Two Wheels',
+    description: 'Pick your motorcycle and explore the island at your own pace.',
+    longDescription:
+      'Minimum 3-day rental at the price above. Includes full insurance and 2 helmets. A refundable security deposit of R$ 500 / US$ 99 / € 86 is required and returned when the bike is brought back in the same condition. Valid motorcycle license required.',
+    features: ['Full insurance included', '2 helmets', 'Refundable security deposit'],
+    priceRange: '$$',
+    price: 'US$ 72 / € 62 / R$ 360',
+    duration: 'Minimum 3 days',
+    groupSize: '1 rider',
+    cta: 'Reserve a Bike',
+    icon: 'Bike',
+    image: '/images/motorcycle.jpg',
+  },
+  {
     id: 'hiking',
     name: 'Hiking Trails',
     title: 'Nature Immersion Treks',
