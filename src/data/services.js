@@ -69,7 +69,7 @@ export const services = [
   },
   {
     id: 'buggy',
-    name: 'Passeio de Buggy',
+    name: 'Buggy Tours',
     title: 'Dune Buggy Adventures',
     description: '6-hour buggy tour along Floripa\'s east coast with swim and leisure stops.',
     longDescription:
