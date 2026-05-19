@@ -68,6 +68,28 @@ export const services = [
     image: '/images/boat.jpg',
   },
   {
+    id: 'diving',
+    name: 'Diving',
+    title: 'Scuba Diving at Xavier Island',
+    description: 'A 4-hour scuba trip to Xavier Island — gear, lessons and lunch included.',
+    longDescription:
+      'We head out to Xavier Island for a 4-hour excursion. All equipment is included, plus a theory class and a practical class before going in the water. Snack served on the boat, 30 minutes of guided scuba diving with a certified instructor, followed by up to 2 hours of surface diving (snorkeling) over the reef.',
+    features: [
+      'All equipment included',
+      'Theory + practical class',
+      '30 min guided scuba dive with instructor',
+      '2 hours of snorkeling after the dive',
+      'Snack on board',
+    ],
+    priceRange: '$$',
+    price: 'US$ 82 / € 70 / R$ 410',
+    duration: '4 hours',
+    groupSize: '1 – 8 people',
+    cta: 'Dive with Us',
+    icon: 'Fish',
+    image: '/images/diving.jpg',
+  },
+  {
     id: 'buggy',
     name: 'Buggy Tours',
     title: 'Dune Buggy Adventures',

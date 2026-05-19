@@ -7,7 +7,7 @@ export const SITE = {
   location: 'Florianópolis, Santa Catarina, Brazil',
   email: 'hello@ubirabrazil.com', // TODO: trocar quando email definitivo estiver pronto
   whatsappNumber: '5511991418315',
-  instagram: 'https://instagram.com/your-handle', // TODO
+  instagram: 'https://instagram.com/ubirabrazil',
   // Coinbase Commerce checkout URL or hosted page (replace with your real one)
   coinbaseCheckoutUrl: 'https://commerce.coinbase.com/checkout/your-checkout-id',
   acceptedCryptos: ['BTC', 'ETH', 'USDT', 'USDC', 'LTC'],
