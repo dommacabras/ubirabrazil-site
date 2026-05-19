@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: '#gallery', label: 'Gallery' },
   { href: '#testimonials', label: 'Reviews' },
   { href: '#crypto', label: 'Crypto' },
+  { href: '/parceiros', label: 'Partners', newTab: true },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -43,7 +44,11 @@ export default function Navbar() {
         <ul className="hidden items-center gap-1 md:flex">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="btn-ghost">
+              <a
+                href={l.href}
+                className="btn-ghost"
+                {...(l.newTab && { target: '_blank', rel: 'noreferrer' })}
+              >
                 {l.label}
               </a>
             </li>
@@ -103,6 +108,7 @@ export default function Navbar() {
                     href={l.href}
                     onClick={() => setOpen(false)}
                     className="text-2xl font-display font-semibold text-white"
+                    {...(l.newTab && { target: '_blank', rel: 'noreferrer' })}
                   >
                     {l.label}
                   </a>
