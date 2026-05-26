@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check, Clock, Users, MessageCircle, Bitcoin } from 'lucide-react';
-import { SITE, waLink } from '../config/site.js';
+import { SITE, waLink, trackContact } from '../config/site.js';
 
 export default function ServiceModal({ service, onClose }) {
   // Lock body scroll while modal is open and close on Esc
@@ -92,6 +92,7 @@ export default function ServiceModal({ service, onClose }) {
                   href={waLink(service.name)}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackContact(service.id)}
                   className="btn-primary flex-1 bg-[#25D366] shadow-emerald-700/30 hover:bg-[#1eb558]"
                 >
                   <MessageCircle className="h-4 w-4" />

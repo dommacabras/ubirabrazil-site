@@ -6,7 +6,7 @@ import {
   Headphones,
   ArrowRight,
 } from 'lucide-react';
-import { SITE } from '../config/site.js';
+import { SITE, trackContact } from '../config/site.js';
 
 const PARTNER_WA_TEXT = encodeURIComponent(
   'Olá! Quero entrar no programa de parceiros Ubira Brazil. Meu perfil é:'
@@ -101,6 +101,7 @@ export default function Partners() {
               href={partnerWaLink}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackContact('partner-program-top')}
               className="btn-primary"
             >
               Quero ser parceiro
@@ -220,6 +221,7 @@ export default function Partners() {
             href={partnerWaLink}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackContact('partner-program-bottom')}
             className="btn-primary mt-6 bg-white text-ocean-700 shadow-white/20 hover:bg-sand-100"
           >
             Falar com a Ubira

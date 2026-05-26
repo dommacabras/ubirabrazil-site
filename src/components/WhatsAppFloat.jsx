@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
-import { waLink } from '../config/site.js';
+import { waLink, trackContact } from '../config/site.js';
 
 export default function WhatsAppFloat() {
   return (
@@ -8,6 +8,7 @@ export default function WhatsAppFloat() {
       href={waLink('your services')}
       target="_blank"
       rel="noreferrer"
+      onClick={() => trackContact('whatsapp-float')}
       aria-label="Chat on WhatsApp"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}

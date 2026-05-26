@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, Mail, Instagram, MapPin } from 'lucide-react';
-import { SITE, waLink } from '../config/site.js';
+import { SITE, waLink, trackContact } from '../config/site.js';
 
 export default function Contact() {
   return (
@@ -25,6 +25,7 @@ export default function Contact() {
             href={waLink('a custom itinerary')}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackContact('contact-section')}
             className="card group flex items-center gap-4 p-6 hover:-translate-y-1"
           >
             <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#25D366]/10 text-[#1eb558]">

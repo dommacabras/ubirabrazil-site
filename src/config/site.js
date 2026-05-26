@@ -17,3 +17,10 @@ export const waLink = (service = 'your services') => {
   const text = encodeURIComponent(`Hi, I'm interested in ${service}`);
   return `https://wa.me/${SITE.whatsappNumber}?text=${text}`;
 };
+
+// Meta Pixel — fire Contact event on WhatsApp clicks for ad optimization.
+export const trackContact = (service = 'unknown') => {
+  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    window.fbq('track', 'Contact', { content_name: service });
+  }
+};

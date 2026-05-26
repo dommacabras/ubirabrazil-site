@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Bitcoin } from 'lucide-react';
-import { SITE, waLink } from '../config/site.js';
+import { SITE, waLink, trackContact } from '../config/site.js';
 
 export default function Hero() {
   return (
@@ -61,6 +61,7 @@ export default function Hero() {
             href={waLink('a tailored Floripa trip')}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackContact('hero-concierge')}
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
           >
             Talk to a Concierge
