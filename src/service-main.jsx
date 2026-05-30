@@ -4,7 +4,10 @@ import { services } from './data/services.js';
 import ServicePage from './ServicePage.jsx';
 import './index.css';
 
-const slug = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+const pathname = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+const slug = pathname && pathname !== 'service'
+  ? pathname
+  : new URLSearchParams(window.location.search).get('slug') ?? '';
 const service = services.find((s) => s.id === slug);
 
 createRoot(document.getElementById('root')).render(
