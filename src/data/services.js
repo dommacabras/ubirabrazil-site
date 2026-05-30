@@ -1,4 +1,4 @@
-// Single source of truth for the 7 services.
+﻿// Single source of truth for the 7 services.
 // Each entry powers a card on the Services section and the modal opened on click.
 
 export const services = [
@@ -24,7 +24,7 @@ export const services = [
     title: 'Professional Surf Coaching',
     description: 'Learn to catch your first wave or improve your technique.',
     longDescription:
-      'From your first pop-up to refining your bottom turn — our coaches match each session to your level, choosing the right beach for the day’s conditions.',
+      "From your first pop-up to refining your bottom turn — our coaches match each session to your level, choosing the right beach for the day's conditions.",
     features: ['Boards for all levels', 'Wetsuits provided', 'Photo package available'],
     priceRange: '$$',
     price: 'US$ 30 / € 25 / R$ 150',
@@ -168,8 +168,13 @@ export const services = [
     title: 'Local Flavors & Culinary Tours',
     description: 'Taste the best seafood and traditional dishes of the region.',
     longDescription:
-      'Chef-led tasting dinners, sunset wine pairings, and farm-to-table mornings with the producers behind Santa Catarina’s best ingredients.',
+      "Chef-led tasting dinners, sunset wine pairings, and farm-to-table mornings with the producers behind Santa Catarina's best ingredients.",
     features: ['Chef-led dinners', 'Wine tasting', 'Farm-to-table tours'],
+    photos: [
+      '/images/gastronomic/salada.jpeg',
+      '/images/gastronomic/peixe.jpeg',
+      '/images/gastronomic/arroz-e-feijao.jpeg',
+    ],
     priceRange: '$$',
     duration: '3 – 5 hours',
     groupSize: '2 – 12 people',

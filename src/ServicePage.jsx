@@ -109,6 +109,22 @@ export default function ServicePage({ service }) {
             ))}
           </ul>
 
+          {/* Photo gallery */}
+          {service.photos?.length > 0 && (
+            <div className="mb-12 grid grid-cols-3 gap-2 sm:gap-3">
+              {service.photos.map((src, i) => (
+                <div key={i} className="overflow-hidden rounded-xl aspect-square">
+                  <img
+                    src={src}
+                    alt={`${service.name} photo ${i + 1}`}
+                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Mobile CTAs */}
           <div className="flex flex-col gap-3 sm:hidden">
             <a
