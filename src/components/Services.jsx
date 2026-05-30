@@ -1,12 +1,8 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { services } from '../data/services.js';
 import ServiceCard from './ServiceCard.jsx';
-import ServiceModal from './ServiceModal.jsx';
 
 export default function Services() {
-  const [active, setActive] = useState(null);
-
   return (
     <section id="services" className="bg-sand-100/70 py-20 sm:py-28">
       <div className="container-app">
@@ -20,19 +16,17 @@ export default function Services() {
           <span className="section-eyebrow">Our Experiences</span>
           <h2 className="section-title">Ten ways to fall for the island.</h2>
           <p className="mt-4 text-forest-700">
-            Tap any card for full details, pricing and booking — WhatsApp or
+            Click any card to see full details, pricing and booking — WhatsApp or
             crypto, your call.
           </p>
         </motion.div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
-            <ServiceCard key={s.id} service={s} index={i} onOpen={setActive} />
+            <ServiceCard key={s.id} service={s} index={i} />
           ))}
         </div>
       </div>
-
-      <ServiceModal service={active} onClose={() => setActive(null)} />
     </section>
   );
 }

@@ -2,20 +2,19 @@ import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function ServiceCard({ service, onOpen, index = 0 }) {
+export default function ServiceCard({ service, index = 0 }) {
   const Icon = Icons[service.icon] || Icons.Compass;
 
   return (
-    <motion.button
-      type="button"
-      onClick={() => onOpen(service)}
+    <motion.a
+      href={`/${service.id}`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ y: -4 }}
       className="group card overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-ocean-500"
-      aria-label={`Open details for ${service.name}`}
+      aria-label={`View details for ${service.name}`}
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
@@ -41,6 +40,6 @@ export default function ServiceCard({ service, onOpen, index = 0 }) {
           {service.cta} <ArrowUpRight className="h-4 w-4" />
         </span>
       </div>
-    </motion.button>
+    </motion.a>
   );
 }
