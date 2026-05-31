@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Bitcoin } from 'lucide-react';
+import { ChevronDown, Bitcoin, Sliders } from 'lucide-react';
 import { SITE, waLink, trackContact } from '../config/site.js';
 
-export default function Hero() {
+export default function Hero({ onOpenCustomize }) {
   return (
     <section id="top" className="relative isolate min-h-[100svh] overflow-hidden text-white">
       {/* Background image */}
@@ -52,11 +52,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-8 flex flex-col gap-3 sm:flex-row"
+          className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
         >
           <a href="#services" className="btn-primary text-base">
             Explore Experiences
           </a>
+          <button
+            onClick={onOpenCustomize}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
+          >
+            <Sliders className="h-4 w-4" />
+            Customize sua Experiência
+          </button>
           <a
             href={waLink('a tailored Floripa trip')}
             target="_blank"

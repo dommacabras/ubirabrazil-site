@@ -4,6 +4,7 @@
 export const services = [
   {
     id: 'kayak',
+    priceUSD: 40,
     name: 'Kayak Tours',
     title: 'Kayak Adventures',
     description: 'Explore hidden canals and crystal clear waters.',
@@ -20,6 +21,7 @@ export const services = [
   },
   {
     id: 'surf',
+    priceUSD: 30,
     name: 'Surf Lessons',
     title: 'Professional Surf Coaching',
     description: 'Learn to catch your first wave or improve your technique.',
@@ -36,6 +38,7 @@ export const services = [
   },
   {
     id: 'horseback',
+    priceUSD: 40,
     name: 'Horseback Riding',
     title: 'Coastal Trails on Horseback',
     description: 'A serene journey through dunes and beaches.',
@@ -53,6 +56,7 @@ export const services = [
   },
   {
     id: 'boat',
+    priceUSD: 40,
     name: 'Boat & Jet Ski Tours',
     title: 'Speed & Luxury on the Water',
     description: 'Private boat charters and thrilling jet ski experiences.',
@@ -69,6 +73,7 @@ export const services = [
   },
   {
     id: 'diving',
+    priceUSD: 82,
     name: 'Diving',
     title: 'Scuba Diving at Xavier Island',
     description: 'A 4-hour scuba trip to Xavier Island — gear, lessons and lunch included.',
@@ -91,6 +96,7 @@ export const services = [
   },
   {
     id: 'buggy',
+    priceUSD: 129,
     name: 'Buggy Tours',
     title: 'Dune Buggy Adventures',
     description: '6-hour buggy tour along Floripa\'s east coast with swim and leisure stops.',
@@ -116,6 +122,7 @@ export const services = [
   },
   {
     id: 'motorcycle',
+    priceUSD: 72,          // per day (min 3 days)
     name: 'Motorcycle Rent',
     title: 'Explore the Island on Two Wheels',
     description: 'Pick your motorcycle and explore the island at your own pace.',
@@ -132,6 +139,7 @@ export const services = [
   },
   {
     id: 'hiking',
+    priceUSD: 40,
     name: 'Hiking Trails',
     title: 'Nature Immersion Treks',
     description: 'Guided hikes through lush tropical forests to secret viewpoints.',
@@ -148,6 +156,7 @@ export const services = [
   },
   {
     id: 'stay',
+    priceUSD: 25,          // per person per night
     name: 'Accommodations',
     title: 'Stay in Paradise',
     description: 'Handpicked villas and cozy beach huts for your comfort.',
@@ -164,6 +173,7 @@ export const services = [
   },
   {
     id: 'gastronomic',
+    priceUSD: null,        // no fixed price — contact for quote
     name: 'Gastronomic Experiences',
     title: 'Local Flavors & Culinary Tours',
     description: 'Taste the best seafood and traditional dishes of the region.',
