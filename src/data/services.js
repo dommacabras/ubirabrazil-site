@@ -38,7 +38,7 @@ export const services = [
   },
   {
     id: 'horseback',
-    priceUSD: 40,
+    priceUSD: 45,
     name: 'Horseback Riding',
     title: 'Coastal Trails on Horseback',
     description: 'A serene journey through dunes and beaches.',
@@ -46,7 +46,7 @@ export const services = [
       'Ride along dunes, freshwater lagoons and quiet beaches at the southern tip of the island. Calm, well-trained horses — perfect for beginners or experienced riders.',
     features: ['Calm horses for beginners', 'Scenic photo stops', 'Sunset rides'],
     priceRange: '$$',
-    price: 'US$ 40 / € 35 / R$ 200',
+    price: 'US$ 45 / € 40 / R$ 250',
     duration: '1.5 – 3 hours',
     groupSize: '1 – 6 people',
     cta: 'Reserve Your Ride',
