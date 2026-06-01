@@ -5,7 +5,7 @@ const PILLARS = [
   {
     icon: Globe2,
     title: 'International first',
-    text: 'Service in PT / EN / ES. Built for travelers from Europe, the US and beyond.',
+    text: 'For explorers who crave more than a trip — a story to tell from Florianópolis, Brazil.',
   },
   {
     icon: Shield,
