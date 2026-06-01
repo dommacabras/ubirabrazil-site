@@ -43,9 +43,7 @@ export default function Hero({ onOpenCustomize }) {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-5 max-w-2xl text-base font-bold text-white/85 sm:text-lg"
         >
-          Premium adventures across Santa Catarina — kayak, surf, hiking,
-          private boat charters and more. Handpicked guides, seamless booking,
-          payment in any currency.
+  For explorers who crave more than a trip — a story to tell from Florianópolis, Brazil.
         </motion.p>
 
         <motion.div
