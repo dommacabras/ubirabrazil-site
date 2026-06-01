@@ -21,7 +21,7 @@ export const services = [
   },
   {
     id: 'surf',
-    priceUSD: 30,
+    priceUSD: 40,
     name: 'Surf Lessons',
     title: 'Professional Surf Coaching',
     description: 'Learn to catch your first wave or improve your technique.',
@@ -29,7 +29,7 @@ export const services = [
       "From your first pop-up to refining your bottom turn — our coaches match each session to your level, choosing the right beach for the day's conditions.",
     features: ['Boards for all levels', 'Wetsuits provided', 'Photo package available'],
     priceRange: '$$',
-    price: 'US$ 30 / € 25 / R$ 150',
+    price: 'US$ 40 / € 35 / R$ 200',
     duration: '1.5 – 2 hours',
     groupSize: '1 – 4 people',
     cta: 'Catch a Wave',
