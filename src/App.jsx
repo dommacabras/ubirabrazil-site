@@ -24,7 +24,7 @@ export default function App() {
       <main>
         <Hero onOpenCustomize={() => setCustomizeOpen(true)} />
         <About />
-        <Services />
+        <Services onOpenCustomize={() => setCustomizeOpen(true)} />
         <Suspense fallback={<SectionFallback />}>
           <Gallery />
           <Testimonials />

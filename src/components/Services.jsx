@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
+import { Sliders } from 'lucide-react';
 import { services } from '../data/services.js';
 import ServiceCard from './ServiceCard.jsx';
 
-export default function Services() {
+export default function Services({ onOpenCustomize }) {
   return (
     <section id="services" className="bg-sand-100/70 py-20 sm:py-28">
       <div className="container-app">
@@ -25,6 +26,16 @@ export default function Services() {
           {services.map((s, i) => (
             <ServiceCard key={s.id} service={s} index={i} />
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <button
+            onClick={onOpenCustomize}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-forest-700 px-8 py-3 text-sm font-semibold text-forest-700 transition hover:bg-forest-700/10"
+          >
+            <Sliders className="h-4 w-4" />
+            Personalize Your Trip
+          </button>
         </div>
       </div>
     </section>
