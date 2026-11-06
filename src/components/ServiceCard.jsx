@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { ArrowUpRight } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext.jsx';
 
 export default function ServiceCard({ service, index = 0 }) {
+  const { t } = useLang();
   const Icon = Icons[service.icon] || Icons.Compass;
 
   return (
@@ -14,7 +16,7 @@ export default function ServiceCard({ service, index = 0 }) {
       transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ y: -4 }}
       className="group card overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-ocean-500"
-      aria-label={`View details for ${service.name}`}
+      aria-label={t.servicesSection.viewDetails(service.name)}
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img

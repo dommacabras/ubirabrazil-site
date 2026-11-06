@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { testimonials } from '../data/testimonials.js';
+import { useLang } from '../i18n/LanguageContext.jsx';
 
 export default function Testimonials() {
+  const { t: tr } = useLang();
   const [idx, setIdx] = useState(0);
   const timer = useRef(null);
 
@@ -32,8 +34,8 @@ export default function Testimonials() {
       onMouseLeave={resume}
     >
       <div className="container-app text-center">
-        <span className="section-eyebrow !text-ocean-300">Travelers</span>
-        <h2 className="section-title !text-white">What our guests say.</h2>
+        <span className="section-eyebrow !text-ocean-300">{tr.testimonials.eyebrow}</span>
+        <h2 className="section-title !text-white">{tr.testimonials.title}</h2>
 
         <div className="relative mx-auto mt-12 max-w-2xl">
           <Quote className="mx-auto h-8 w-8 text-ocean-300/60" />
@@ -56,14 +58,14 @@ export default function Testimonials() {
                 ))}
               </div>
               <p className="mt-3 font-semibold">{t.name}</p>
-              <p className="text-sm text-white/60">{t.country}</p>
+              <p className="text-sm text-white/60">{tr.testimonials.countries[t.country] ?? t.country}</p>
             </motion.div>
           </AnimatePresence>
 
           <div className="mt-8 flex items-center justify-center gap-3">
             <button
               onClick={prev}
-              aria-label="Previous testimonial"
+              aria-label={tr.testimonials.previous}
               className="grid h-10 w-10 place-items-center rounded-full bg-white/10 hover:bg-white/20"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -73,7 +75,7 @@ export default function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setIdx(i)}
-                  aria-label={`Go to testimonial ${i + 1}`}
+                  aria-label={tr.testimonials.goTo(i + 1)}
                   className={`h-1.5 rounded-full transition-all ${
                     i === idx ? 'w-6 bg-ocean-300' : 'w-2 bg-white/30'
                   }`}
@@ -82,7 +84,7 @@ export default function Testimonials() {
             </div>
             <button
               onClick={next}
-              aria-label="Next testimonial"
+              aria-label={tr.testimonials.next}
               className="grid h-10 w-10 place-items-center rounded-full bg-white/10 hover:bg-white/20"
             >
               <ChevronRight className="h-5 w-5" />

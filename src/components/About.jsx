@@ -1,25 +1,14 @@
 import { motion } from 'framer-motion';
 import { Globe2, Shield, Sparkles } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext.jsx';
 
-const PILLARS = [
-  {
-    icon: Globe2,
-    title: 'International first',
-    text: 'For explorers who crave more than a trip — a story to tell from Florianópolis, Brazil.',
-  },
-  {
-    icon: Shield,
-    title: 'Curated & vetted',
-    text: 'Every guide, villa and operator is hand-picked. No tourist traps.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Crypto-native',
-    text: 'BTC, ETH, USDT accepted. Fixed-price checkout, no FX surprises.',
-  },
-];
+// Texts for each pillar live in the i18n dictionaries (t.about.pillars), same order.
+const PILLAR_ICONS = [Globe2, Shield, Sparkles];
 
 export default function About() {
+  const { t } = useLang();
+  const PILLARS = t.about.pillars.map((p, i) => ({ ...p, icon: PILLAR_ICONS[i] }));
+
   return (
     <section id="about" className="py-20 sm:py-28">
       <div className="container-app grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -29,18 +18,15 @@ export default function About() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-eyebrow">About us</span>
+          <span className="section-eyebrow">{t.about.eyebrow}</span>
           <h2 className="section-title">
-            We don’t sell tours.<br />We reveal the Floripa that few know.
+            {t.about.titleLine1}<br />{t.about.titleLine2}
           </h2>
           <p className="mt-5 max-w-xl text-lg font-bold leading-relaxed text-forest-800">
-            We’re a small team of locals obsessed with two things: the wild
-            beauty of Santa Catarina and making it effortless for international
-            travelers to experience it. Pick from our nine signature
-            experiences — or let us build the whole week for you.
+            {t.about.body}
           </p>
           <a href="#services" className="btn-secondary mt-8">
-            See what we do
+            {t.about.cta}
           </a>
         </motion.div>
 

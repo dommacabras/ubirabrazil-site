@@ -1,4 +1,5 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { useLang, setMetaDescription } from './i18n/LanguageContext.jsx';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
@@ -17,6 +18,12 @@ const SectionFallback = () => <div className="h-40" aria-hidden />;
 
 export default function App() {
   const [customizeOpen, setCustomizeOpen] = useState(false);
+  const { t } = useLang();
+
+  useEffect(() => {
+    document.title = t.meta.homeTitle;
+    setMetaDescription(t.meta.homeDescription);
+  }, [t]);
 
   return (
     <>

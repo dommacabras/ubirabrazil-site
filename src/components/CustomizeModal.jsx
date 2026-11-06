@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, Users, MessageCircle, Bitcoin, Calendar } from 'lucide-react';
 import { services } from '../data/services.js';
 import { SITE, trackContact } from '../config/site.js';
+import { useLang, localizeService } from '../i18n/LanguageContext.jsx';
 
 function Counter({ value, onChange, min = 1, max = 30 }) {
   return (
@@ -34,20 +35,21 @@ function lineTotal(service, people, bikeDays, nights) {
   return usd * people;
 }
 
-function priceLabel(service) {
+function priceLabel(service, c) {
   if (service.priceUSD == null) return '—';
-  if (service.id === 'motorcycle') return `US$ ${service.priceUSD}/day`;
-  if (service.id === 'stay') return `US$ ${service.priceUSD}/p·night`;
-  return `US$ ${service.priceUSD}/person`;
+  if (service.id === 'motorcycle') return `US$ ${service.priceUSD}${c.unitDay}`;
+  if (service.id === 'stay') return `US$ ${service.priceUSD}${c.unitPersonNight}`;
+  return `US$ ${service.priceUSD}${c.unitPerson}`;
 }
 
-function buildWaUrl(selected, people, bikeDays, nights, whatsappNumber) {
+// `m` = t.customize.waMessage from the active language dictionary.
+function buildWaUrl(selected, people, bikeDays, nights, whatsappNumber, m) {
   const lines = selected.map((s) => {
     const t = lineTotal(s, people, bikeDays, nights);
-    if (s.id === 'motorcycle') return `• ${s.name} — ${bikeDays} days × US$${s.priceUSD} = US$${t}`;
-    if (s.id === 'stay') return `• ${s.name} — ${people}p × ${nights} nights × US$${s.priceUSD} = US$${t}`;
-    if (t == null) return `• ${s.name} — contact for pricing`;
-    return `• ${s.name} — ${people} people × US$${s.priceUSD} = US$${t}`;
+    if (s.id === 'motorcycle') return m.bikeLine(s.name, bikeDays, s.priceUSD, t);
+    if (s.id === 'stay') return m.stayLine(s.name, people, nights, s.priceUSD, t);
+    if (t == null) return m.quoteLine(s.name);
+    return m.peopleLine(s.name, people, s.priceUSD, t);
   });
 
   const total = selected.reduce((acc, s) => {
@@ -56,11 +58,11 @@ function buildWaUrl(selected, people, bikeDays, nights, whatsappNumber) {
   }, 0);
 
   const msg = [
-    "Hi! I'd like to build a custom package:\n",
+    m.intro,
     ...lines,
-    `\nGroup: ${people} people`,
-    total > 0 ? `Estimated total: US$ ${total}` : '',
-    '\nCan you help me plan the details?',
+    m.group(people),
+    total > 0 ? m.total(total) : '',
+    m.outro,
   ]
     .filter(Boolean)
     .join('\n');
@@ -73,6 +75,9 @@ export default function CustomizeModal({ open, onClose }) {
   const [people, setPeople] = useState(2);
   const [bikeDays, setBikeDays] = useState(3);
   const [nights, setNights] = useState(2);
+  const { t: tr } = useLang();
+  const c = tr.customize;
+  const localServices = services.map((s) => localizeService(s, tr));
 
   useEffect(() => {
     if (!open) return;
@@ -92,7 +97,7 @@ export default function CustomizeModal({ open, onClose }) {
       return next;
     });
 
-  const selectedServices = services.filter((s) => selected.has(s.id));
+  const selectedServices = localServices.filter((s) => selected.has(s.id));
   const hasBike = selected.has('motorcycle');
   const hasStay = selected.has('stay');
 
@@ -117,7 +122,7 @@ export default function CustomizeModal({ open, onClose }) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label="Customize your experience"
+            aria-label={c.aria}
             initial={{ y: 64, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 64, opacity: 0 }}
@@ -129,13 +134,13 @@ export default function CustomizeModal({ open, onClose }) {
             <div className="flex items-center justify-between border-b border-black/5 px-6 py-4">
               <div>
                 <h2 className="font-display text-xl font-bold text-forest-900">
-                  Build Your Package
+                  {c.title}
                 </h2>
-                <p className="text-xs text-forest-500">Select experiences · set group size · get instant price</p>
+                <p className="text-xs text-forest-500">{c.subtitle}</p>
               </div>
               <button
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={tr.common.close}
                 className="grid h-9 w-9 place-items-center rounded-full bg-sand-100 text-forest-700 transition hover:bg-sand-200"
               >
                 <X className="h-4 w-4" />
@@ -146,20 +151,20 @@ export default function CustomizeModal({ open, onClose }) {
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-black/5 bg-sand-50/60 px-6 py-3">
               <div className="flex items-center gap-3">
                 <Users className="h-4 w-4 text-ocean-700" />
-                <span className="text-sm font-medium text-forest-700">People</span>
+                <span className="text-sm font-medium text-forest-700">{c.people}</span>
                 <Counter value={people} onChange={setPeople} min={1} max={20} />
               </div>
               {hasBike && (
                 <div className="flex items-center gap-3">
                   <Calendar className="h-4 w-4 text-ocean-700" />
-                  <span className="text-sm font-medium text-forest-700">Bike days</span>
+                  <span className="text-sm font-medium text-forest-700">{c.bikeDays}</span>
                   <Counter value={bikeDays} onChange={setBikeDays} min={3} max={30} />
                 </div>
               )}
               {hasStay && (
                 <div className="flex items-center gap-3">
                   <Calendar className="h-4 w-4 text-ocean-700" />
-                  <span className="text-sm font-medium text-forest-700">Nights</span>
+                  <span className="text-sm font-medium text-forest-700">{c.nights}</span>
                   <Counter value={nights} onChange={setNights} min={1} max={30} />
                 </div>
               )}
@@ -170,10 +175,10 @@ export default function CustomizeModal({ open, onClose }) {
               {/* Service checklist */}
               <div className="px-6 pt-5 pb-4">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
-                  Select experiences
+                  {c.selectExperiences}
                 </p>
                 <div className="space-y-2">
-                  {services.map((s) => {
+                  {localServices.map((s) => {
                     const checked = selected.has(s.id);
                     return (
                       <label
@@ -191,7 +196,7 @@ export default function CustomizeModal({ open, onClose }) {
                           className="h-4 w-4 accent-ocean-600"
                         />
                         <span className="flex-1 text-sm font-medium text-forest-900">{s.name}</span>
-                        <span className="text-xs font-medium text-forest-500">{priceLabel(s)}</span>
+                        <span className="text-xs font-medium text-forest-500">{priceLabel(s, c)}</span>
                       </label>
                     );
                   })}
@@ -202,22 +207,22 @@ export default function CustomizeModal({ open, onClose }) {
               {selectedServices.length > 0 && (
                 <div className="border-t border-black/5 px-6 pt-4 pb-6">
                   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
-                    Your package
+                    {c.yourPackage}
                   </p>
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-black/8 text-left">
-                        <th className="pb-2 text-xs font-medium text-forest-500">Experience</th>
-                        <th className="pb-2 text-xs font-medium text-forest-500">Breakdown</th>
-                        <th className="pb-2 text-right text-xs font-medium text-forest-500">Total</th>
+                        <th className="pb-2 text-xs font-medium text-forest-500">{c.colExperience}</th>
+                        <th className="pb-2 text-xs font-medium text-forest-500">{c.colBreakdown}</th>
+                        <th className="pb-2 text-right text-xs font-medium text-forest-500">{c.colTotal}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {selectedServices.map((s) => {
                         const t = lineTotal(s, people, bikeDays, nights);
                         let breakdown = '—';
-                        if (s.id === 'motorcycle') breakdown = `${bikeDays}d × US$${s.priceUSD}`;
-                        else if (s.id === 'stay') breakdown = `${people}p × ${nights}n × US$${s.priceUSD}`;
+                        if (s.id === 'motorcycle') breakdown = `${bikeDays}${c.abbrDays} × US$${s.priceUSD}`;
+                        else if (s.id === 'stay') breakdown = `${people}${c.abbrPeople} × ${nights}${c.abbrNights} × US$${s.priceUSD}`;
                         else if (s.priceUSD != null) breakdown = `${people} × US$${s.priceUSD}`;
 
                         return (
@@ -228,7 +233,7 @@ export default function CustomizeModal({ open, onClose }) {
                               {t != null ? (
                                 `US$ ${t}`
                               ) : (
-                                <span className="text-xs italic text-forest-400">quote</span>
+                                <span className="text-xs italic text-forest-400">{c.quote}</span>
                               )}
                             </td>
                           </tr>
@@ -238,12 +243,12 @@ export default function CustomizeModal({ open, onClose }) {
                     <tfoot>
                       <tr>
                         <td colSpan={2} className="pt-3 font-bold text-forest-900">
-                          Estimated total
+                          {c.estimatedTotal}
                         </td>
                         <td className="pt-3 text-right text-base font-bold text-ocean-700">
                           US$ {total}
                           {hasQuoteItem && (
-                            <span className="ml-1 text-xs font-normal text-forest-400">+ extras</span>
+                            <span className="ml-1 text-xs font-normal text-forest-400">{c.extras}</span>
                           )}
                         </td>
                       </tr>
@@ -257,19 +262,19 @@ export default function CustomizeModal({ open, onClose }) {
             <div className="border-t border-black/5 bg-white/95 p-4 backdrop-blur sm:p-5">
               {selectedServices.length === 0 ? (
                 <p className="text-center text-sm text-forest-400">
-                  Select at least one experience above to see your price.
+                  {c.emptyHint}
                 </p>
               ) : (
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <a
-                    href={buildWaUrl(selectedServices, people, bikeDays, nights, SITE.whatsappNumber)}
+                    href={buildWaUrl(selectedServices, people, bikeDays, nights, SITE.whatsappNumber, c.waMessage)}
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => trackContact('customize-modal')}
                     className="btn-primary flex-1 bg-[#25D366] shadow-emerald-700/30 hover:bg-[#1eb558]"
                   >
                     <MessageCircle className="h-4 w-4" />
-                    Send to WhatsApp
+                    {c.sendToWhatsApp}
                   </a>
                   <a
                     href={SITE.coinbaseCheckoutUrl}
@@ -278,7 +283,7 @@ export default function CustomizeModal({ open, onClose }) {
                     className="btn-secondary flex-1"
                   >
                     <Bitcoin className="h-4 w-4" />
-                    Pay with Crypto
+                    {tr.common.payWithCrypto}
                   </a>
                 </div>
               )}
