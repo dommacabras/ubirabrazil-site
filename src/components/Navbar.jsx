@@ -2,20 +2,23 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { SITE } from '../config/site.js';
+import { useLang } from '../i18n/LanguageContext.jsx';
+import LanguageToggle from './LanguageToggle.jsx';
 
 const NAV_LINKS = [
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#testimonials', label: 'Reviews' },
-  { href: '#crypto', label: 'Crypto' },
-  { href: '/parceiros', label: 'Partners', newTab: true },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about', key: 'about' },
+  { href: '#services', key: 'services' },
+  { href: '#gallery', key: 'gallery' },
+  { href: '#testimonials', key: 'reviews' },
+  { href: '#crypto', key: 'crypto' },
+  { href: '/parceiros', key: 'partners', newTab: true },
+  { href: '#contact', key: 'contact' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -36,12 +39,12 @@ export default function Navbar() {
       }`}
     >
       <nav className="container-app flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 text-white">
+        <a href="#top" className="flex shrink-0 items-center gap-2 text-white">
           <img src="/favicon.svg" alt="" className="h-8 w-8" />
-          <span className="font-display text-lg font-bold tracking-wide">{SITE.brand}</span>
+          <span className="whitespace-nowrap font-display text-lg font-bold tracking-wide">{SITE.brand}</span>
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 xl:flex">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
               <a
@@ -49,23 +52,27 @@ export default function Navbar() {
                 className="btn-ghost"
                 {...(l.newTab && { target: '_blank', rel: 'noreferrer' })}
               >
-                {l.label}
+                {t.nav[l.key]}
               </a>
             </li>
           ))}
         </ul>
 
-        <a href="#services" className="hidden btn-primary md:inline-flex">
-          Book Now
-        </a>
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
 
-        <button
-          onClick={() => setOpen(true)}
-          className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
-          aria-label="Open menu"
-        >
-          <Menu className="h-6 w-6" />
-        </button>
+          <a href="#services" className="hidden whitespace-nowrap btn-primary md:inline-flex">
+            {t.common.bookNow}
+          </a>
+
+          <button
+            onClick={() => setOpen(true)}
+            className="xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
+            aria-label={t.nav.openMenu}
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -75,17 +82,20 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-forest-950/95 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-50 bg-forest-950/95 backdrop-blur-md xl:hidden"
           >
             <div className="flex items-center justify-between px-5 h-16">
               <span className="font-display text-lg font-bold text-white">{SITE.brand}</span>
-              <button
-                onClick={() => setOpen(false)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
-                aria-label="Close menu"
-              >
-                <X className="h-6 w-6" />
-              </button>
+              <div className="flex items-center gap-2">
+                <LanguageToggle />
+                <button
+                  onClick={() => setOpen(false)}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
+                  aria-label={t.nav.closeMenu}
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
             </div>
             <motion.ul
               initial="hidden"
@@ -110,7 +120,7 @@ export default function Navbar() {
                     className="text-2xl font-display font-semibold text-white"
                     {...(l.newTab && { target: '_blank', rel: 'noreferrer' })}
                   >
-                    {l.label}
+                    {t.nav[l.key]}
                   </a>
                 </motion.li>
               ))}
@@ -126,7 +136,7 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                   className="btn-primary text-base"
                 >
-                  Book Now
+                  {t.common.bookNow}
                 </a>
               </motion.li>
             </motion.ul>

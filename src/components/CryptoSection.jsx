@@ -1,26 +1,15 @@
 import { motion } from 'framer-motion';
 import { Bitcoin, ShieldCheck, Zap, Globe } from 'lucide-react';
 import { SITE } from '../config/site.js';
+import { useLang } from '../i18n/LanguageContext.jsx';
 
-const PERKS = [
-  {
-    icon: Zap,
-    title: 'Instant checkout',
-    text: 'Pay in seconds — no bank hours, no FX form, no IOF surprises.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Price locked in',
-    text: 'Quoted in USD/EUR. Converted automatically on settlement.',
-  },
-  {
-    icon: Globe,
-    title: 'Global by design',
-    text: 'Built for nomads and crypto-native travelers. Pay from anywhere.',
-  },
-];
+// Texts for each perk live in the i18n dictionaries (t.crypto.perks), same order.
+const PERK_ICONS = [Zap, ShieldCheck, Globe];
 
 export default function CryptoSection() {
+  const { t } = useLang();
+  const PERKS = t.crypto.perks.map((p, i) => ({ ...p, icon: PERK_ICONS[i] }));
+
   return (
     <section
       id="crypto"
@@ -45,15 +34,9 @@ export default function CryptoSection() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
           >
-            <span className="section-eyebrow !text-ocean-300">Payment</span>
-            <h2 className="section-title !text-white">
-              Pay in Bitcoin, Ethereum or USDT.
-            </h2>
-            <p className="mt-5 max-w-xl text-lg font-bold text-white/85">
-              We were the first operator in Santa Catarina to accept crypto
-              natively. We believe in freedom. Powered by Coinbase Commerce —
-              secure, regulated, and instantly settled.
-            </p>
+            <span className="section-eyebrow !text-ocean-300">{t.crypto.eyebrow}</span>
+            <h2 className="section-title !text-white">{t.crypto.title}</h2>
+            <p className="mt-5 max-w-xl text-lg font-bold text-white/85">{t.crypto.body}</p>
 
             <div className="mt-6 flex flex-wrap gap-2">
               {SITE.acceptedCryptos.map((c) => (
@@ -73,7 +56,7 @@ export default function CryptoSection() {
               className="btn-primary mt-8 bg-white text-forest-950 shadow-white/20 hover:bg-sand-100"
             >
               <Bitcoin className="h-4 w-4" />
-              Pay with Crypto
+              {t.common.payWithCrypto}
             </a>
           </motion.div>
 

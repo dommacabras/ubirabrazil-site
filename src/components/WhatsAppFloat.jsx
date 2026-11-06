@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { waLink, trackContact } from '../config/site.js';
+import { useLang } from '../i18n/LanguageContext.jsx';
 
 export default function WhatsAppFloat() {
+  const { t } = useLang();
   return (
     <motion.a
-      href={waLink('your services')}
+      href={waLink(t.wa.yourServices, t.wa.greeting)}
       target="_blank"
       rel="noreferrer"
       onClick={() => trackContact('whatsapp-float')}
-      aria-label="Chat on WhatsApp"
+      aria-label={t.whatsappFloat.aria}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1.2, type: 'spring', stiffness: 200, damping: 18 }}

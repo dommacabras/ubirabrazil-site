@@ -4,10 +4,17 @@ import { ArrowLeft, Clock, Users, Check, MessageCircle, Bitcoin } from 'lucide-r
 import { SITE, waLink, trackContact } from './config/site.js';
 import Footer from './components/Footer.jsx';
 import WhatsAppFloat from './components/WhatsAppFloat.jsx';
+import LanguageToggle from './components/LanguageToggle.jsx';
+import { useLang, localizeService, setMetaDescription } from './i18n/LanguageContext.jsx';
 
-export default function ServicePage({ service }) {
+export default function ServicePage({ service: baseService }) {
+  const { t } = useLang();
+  const service = localizeService(baseService, t);
+  const wa = waLink(service.name, t.wa.greeting);
+
   useEffect(() => {
     document.title = `${service.title} — ${SITE.brand}`;
+    setMetaDescription(service.longDescription);
     const setMeta = (prop, val) => {
       const el = document.querySelector(`meta[property="${prop}"]`);
       if (el) el.setAttribute('content', val);
@@ -15,7 +22,7 @@ export default function ServicePage({ service }) {
     setMeta('og:title', `${service.title} — ${SITE.brand}`);
     setMeta('og:description', service.longDescription);
     setMeta('og:image', `https://ubirabrazil.com${service.image}`);
-  }, [service]);
+  }, [service.title, service.longDescription, service.image]);
 
   return (
     <div className="flex min-h-screen flex-col bg-sand-50">
@@ -27,21 +34,24 @@ export default function ServicePage({ service }) {
             className="flex items-center gap-2 text-white/75 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span className="text-sm font-medium">All Experiences</span>
+            <span className="text-sm font-medium">{t.servicePage.allExperiences}</span>
           </a>
-          <a href="/" className="flex items-center gap-2 text-white">
+          <a href="/" className="hidden items-center gap-2 text-white sm:flex">
             <img src="/favicon.svg" alt="" className="h-7 w-7" />
             <span className="font-display text-base font-bold">{SITE.brand}</span>
           </a>
-          <a
-            href={waLink(service.name)}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => trackContact(service.id)}
-            className="btn-primary hidden py-2 text-sm sm:inline-flex"
-          >
-            Book Now
-          </a>
+          <div className="flex items-center gap-2">
+            <LanguageToggle />
+            <a
+              href={wa}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackContact(service.id)}
+              className="btn-primary hidden py-2 text-sm sm:inline-flex"
+            >
+              {t.common.bookNow}
+            </a>
+          </div>
         </div>
       </header>
 
@@ -96,7 +106,7 @@ export default function ServicePage({ service }) {
 
           {/* What's included */}
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-ocean-700">
-            What's included
+            {t.servicePage.whatsIncluded}
           </h2>
           <ul className="mb-12 space-y-3">
             {service.features.map((f) => (
@@ -116,7 +126,7 @@ export default function ServicePage({ service }) {
                 <div key={i} className="overflow-hidden rounded-xl aspect-square">
                   <img
                     src={src}
-                    alt={`${service.name} photo ${i + 1}`}
+                    alt={t.servicePage.photoAlt(service.name, i + 1)}
                     className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                     loading="lazy"
                   />
@@ -128,14 +138,14 @@ export default function ServicePage({ service }) {
           {/* Mobile CTAs */}
           <div className="flex flex-col gap-3 sm:hidden">
             <a
-              href={waLink(service.name)}
+              href={wa}
               target="_blank"
               rel="noreferrer"
               onClick={() => trackContact(service.id)}
               className="btn-primary bg-[#25D366] shadow-emerald-700/30 hover:bg-[#1eb558]"
             >
               <MessageCircle className="h-4 w-4" />
-              Book via WhatsApp
+              {t.common.bookViaWhatsApp}
             </a>
             <a
               href={SITE.coinbaseCheckoutUrl}
@@ -144,7 +154,7 @@ export default function ServicePage({ service }) {
               className="btn-secondary"
             >
               <Bitcoin className="h-4 w-4" />
-              Pay with Crypto
+              {t.common.payWithCrypto}
             </a>
           </div>
         </motion.div>
@@ -163,14 +173,14 @@ export default function ServicePage({ service }) {
           </div>
           <div className="flex gap-3">
             <a
-              href={waLink(service.name)}
+              href={wa}
               target="_blank"
               rel="noreferrer"
               onClick={() => trackContact(service.id)}
               className="btn-primary bg-[#25D366] shadow-emerald-700/30 hover:bg-[#1eb558]"
             >
               <MessageCircle className="h-4 w-4" />
-              Book via WhatsApp
+              {t.common.bookViaWhatsApp}
             </a>
             <a
               href={SITE.coinbaseCheckoutUrl}
@@ -179,7 +189,7 @@ export default function ServicePage({ service }) {
               className="btn-secondary"
             >
               <Bitcoin className="h-4 w-4" />
-              Pay with Crypto
+              {t.common.payWithCrypto}
             </a>
           </div>
         </div>

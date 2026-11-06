@@ -13,8 +13,9 @@ export const SITE = {
   acceptedCryptos: ['BTC', 'ETH', 'USDT', 'USDC', 'LTC'],
 };
 
-export const waLink = (service = 'your services') => {
-  const text = encodeURIComponent(`Hi, I'm interested in ${service}`);
+// `greeting` comes from the active language dictionary (t.wa.greeting); defaults to English.
+export const waLink = (service = 'your services', greeting = (s) => `Hi, I'm interested in ${s}`) => {
+  const text = encodeURIComponent(greeting(service));
   return `https://wa.me/${SITE.whatsappNumber}?text=${text}`;
 };
 

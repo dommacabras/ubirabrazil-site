@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { gallery } from '../data/gallery.js';
+import { useLang } from '../i18n/LanguageContext.jsx';
 
 export default function Gallery() {
+  const { t } = useLang();
   return (
     <section id="gallery" className="py-20 sm:py-28">
       <div className="container-app">
@@ -12,8 +14,8 @@ export default function Gallery() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <span className="section-eyebrow">Gallery</span>
-          <h2 className="section-title">Moments from the island.</h2>
+          <span className="section-eyebrow">{t.gallery.eyebrow}</span>
+          <h2 className="section-title">{t.gallery.title}</h2>
         </motion.div>
 
         <div className="mt-12 columns-2 gap-4 sm:columns-3 lg:columns-4 [column-fill:_balance]">
@@ -28,7 +30,7 @@ export default function Gallery() {
             >
               <img
                 src={img.src}
-                alt={img.alt}
+                alt={t.gallery.alts[img.src] ?? img.alt}
                 loading="lazy"
                 className="block w-full object-cover transition duration-700 hover:scale-[1.03]"
               />

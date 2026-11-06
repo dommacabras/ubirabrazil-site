@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, Mail, Instagram, MapPin } from 'lucide-react';
 import { SITE, waLink, trackContact } from '../config/site.js';
+import { useLang } from '../i18n/LanguageContext.jsx';
 
 export default function Contact() {
+  const { t } = useLang();
   return (
     <section id="contact" className="py-20 sm:py-28">
       <div className="container-app">
@@ -13,16 +15,14 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <span className="section-eyebrow">Contact</span>
-          <h2 className="section-title">Ready when you are.</h2>
-          <p className="mt-4 text-forest-700">
-            WhatsApp is the fastest way — we typically reply in under an hour.
-          </p>
+          <span className="section-eyebrow">{t.contact.eyebrow}</span>
+          <h2 className="section-title">{t.contact.title}</h2>
+          <p className="mt-4 text-forest-700">{t.contact.text}</p>
         </motion.div>
 
         <div className="mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-2">
           <a
-            href={waLink('a custom itinerary')}
+            href={waLink(t.wa.customItinerary, t.wa.greeting)}
             target="_blank"
             rel="noreferrer"
             onClick={() => trackContact('contact-section')}
@@ -35,7 +35,7 @@ export default function Contact() {
               <p className="text-xs font-semibold uppercase tracking-widest text-forest-600">
                 WhatsApp
               </p>
-              <p className="font-semibold text-forest-900">Chat with us</p>
+              <p className="font-semibold text-forest-900">{t.contact.chatWithUs}</p>
             </div>
           </a>
 
@@ -48,7 +48,7 @@ export default function Contact() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-forest-600">
-                Email
+                {t.contact.emailLabel}
               </p>
               <p className="font-semibold text-forest-900">{SITE.email}</p>
             </div>
@@ -67,7 +67,7 @@ export default function Contact() {
               <p className="text-xs font-semibold uppercase tracking-widest text-forest-600">
                 Instagram
               </p>
-              <p className="font-semibold text-forest-900">Follow the journey</p>
+              <p className="font-semibold text-forest-900">{t.contact.followJourney}</p>
             </div>
           </a>
 
@@ -77,9 +77,9 @@ export default function Contact() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-forest-600">
-                Based in
+                {t.contact.basedIn}
               </p>
-              <p className="font-semibold text-forest-900">{SITE.location}</p>
+              <p className="font-semibold text-forest-900">{t.site.location}</p>
             </div>
           </div>
         </div>
