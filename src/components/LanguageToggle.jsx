@@ -1,6 +1,6 @@
 import { LANGS, useLang } from '../i18n/LanguageContext.jsx';
 
-const NAMES = { en: 'English', es: 'Español' };
+const NAMES = { en: 'English', es: 'Español', pt: 'Português' };
 
 export default function LanguageToggle({ className = '' }) {
   const { lang, setLang } = useLang();
@@ -21,7 +21,7 @@ export default function LanguageToggle({ className = '' }) {
             title={NAMES[code]}
             aria-pressed={active}
             onClick={() => setLang(code)}
-            className={`min-w-[2.5rem] rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition ${
+            className={`min-w-[2.25rem] rounded-full px-2.5 py-1.5 sm:min-w-[2.5rem] sm:px-3 text-xs font-bold uppercase tracking-wider transition ${
               active ? 'bg-white text-forest-950 shadow' : 'text-white/80 hover:text-white'
             }`}
           >

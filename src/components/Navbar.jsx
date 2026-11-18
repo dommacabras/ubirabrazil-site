@@ -59,7 +59,8 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <LanguageToggle />
+          {/* On very narrow phones (<360px) the toggle lives only inside the menu, so the header doesn't overflow. */}
+          <LanguageToggle className="max-[359px]:hidden" />
 
           <a href="#services" className="hidden whitespace-nowrap btn-primary md:inline-flex">
             {t.common.bookNow}

@@ -1,10 +1,13 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { en } from './en.js';
 import { es } from './es.js';
+import { pt } from './pt.js';
 
 // Supported languages. English is the base: any key missing in another
 // dictionary falls back to English automatically.
-export const LANGS = ['en', 'es'];
+export const LANGS = ['en', 'es', 'pt'];
+// Value for <html lang>; Brazilian Portuguese is tagged pt-BR.
+const HTML_LANG = { en: 'en', es: 'es', pt: 'pt-BR' };
 const STORAGE_KEY = 'ubira-lang';
 
 const isPlainObject = (v) => v && typeof v === 'object' && !Array.isArray(v);
@@ -19,12 +22,15 @@ function deepMerge(base, override) {
   return out;
 }
 
-const DICTS = { en, es: deepMerge(en, es) };
+const DICTS = { en, es: deepMerge(en, es), pt: deepMerge(en, pt) };
+
+// Accepts 'pt', 'pt-BR', 'pt_br', 'ES', etc.
+const normalizeLang = (value) => (value || '').toLowerCase().split(/[-_]/)[0];
 
 // Priority: ?lang= in the URL (useful for ads) > visitor's saved choice > browser language.
 function detectInitialLang() {
   if (typeof window === 'undefined') return 'en';
-  const fromUrl = new URLSearchParams(window.location.search).get('lang');
+  const fromUrl = normalizeLang(new URLSearchParams(window.location.search).get('lang'));
   if (LANGS.includes(fromUrl)) return fromUrl;
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -32,8 +38,8 @@ function detectInitialLang() {
   } catch {
     /* storage unavailable (private mode etc.) */
   }
-  const browser = (navigator.languages?.[0] || navigator.language || '').toLowerCase();
-  return browser.startsWith('es') ? 'es' : 'en';
+  const browser = normalizeLang(navigator.languages?.[0] || navigator.language);
+  return LANGS.includes(browser) ? browser : 'en';
 }
 
 // Default value lets components render in English even outside a provider.
@@ -59,7 +65,7 @@ export function LanguageProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang = lang;
+    document.documentElement.lang = HTML_LANG[lang] ?? lang;
   }, [lang]);
 
   const value = useMemo(() => ({ lang, setLang, t: DICTS[lang] }), [lang, setLang]);
