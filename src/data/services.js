@@ -23,7 +23,9 @@ export const services = [
     heroImages: [
       '/images/kayak/kayak-01.webp',
       '/images/kayak/kayak-02.webp',
+      '/images/kayak/kayak-06.webp',
       '/images/kayak/kayak-03.webp',
+      '/images/kayak/kayak-07.webp',
       '/images/kayak/kayak-04.webp',
       '/images/kayak/kayak-05.webp',
     ],
