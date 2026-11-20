@@ -89,7 +89,7 @@ export const es = {
       title: 'Aventuras en kayak',
       description: 'Explora canales escondidos y aguas cristalinas.',
       longDescription:
-        'Rema entre manglares, lagunas escondidas y playas secretas a las que solo se llega en kayak. Nuestros guías certificados conocen cada rincón, y cada cala tranquila para parar a nadar.',
+        'Disfruta de una experiencia única en el canal de Barra da Lagoa y en la Lagoa da Conceição. Recorremos en kayak todo el canal de la Barra y hacemos 2 paradas: una en el puente del canal y otra en una playa secreta de la Lagoa da Conceição, a la que solo se llega en kayak. Nuestros guías conocen cada rincón y cada cala tranquila para parar, darse un chapuzón y disfrutar de un día increíble.',
       features: ['Equipo incluido', 'Guías certificados', 'Opciones al amanecer o al atardecer'],
       duration: '2 – 4 horas',
       groupSize: '1 – 8 personas',

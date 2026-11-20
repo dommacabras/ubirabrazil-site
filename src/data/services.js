@@ -9,7 +9,7 @@ export const services = [
     title: 'Kayak Adventures',
     description: 'Explore hidden canals and crystal clear waters.',
     longDescription:
-      'Paddle through mangroves, hidden lagoons and secret beaches accessible only by kayak. Our certified guides know every inlet — and every quiet cove to stop for a swim.',
+      'Enjoy a unique experience on the Barra da Lagoa canal and Lagoa da Conceição. We kayak the full length of the Barra canal and make 2 stops: one at the canal bridge and another at a secret beach on Lagoa da Conceição that can only be reached by kayak. Our guides know every corner and every quiet cove to stop for a swim and enjoy an incredible day.',
     features: ['Equipment included', 'Certified guides', 'Sunrise / sunset options'],
     priceRange: '$ – $$',
     price: 'US$ 40 / € 35 / R$ 200',
