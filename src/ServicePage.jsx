@@ -5,6 +5,7 @@ import { SITE, waLink, trackContact } from './config/site.js';
 import Footer from './components/Footer.jsx';
 import WhatsAppFloat from './components/WhatsAppFloat.jsx';
 import LanguageToggle from './components/LanguageToggle.jsx';
+import HeroSlideshow from './components/HeroSlideshow.jsx';
 import { useLang, localizeService, setMetaDescription } from './i18n/LanguageContext.jsx';
 
 export default function ServicePage({ service: baseService }) {
@@ -57,11 +58,11 @@ export default function ServicePage({ service: baseService }) {
 
       {/* Hero */}
       <div className="relative h-[50vh] min-h-[300px] sm:h-[60vh]">
-        <img
-          src={service.image}
+        <HeroSlideshow
+          images={service.heroImages?.length ? service.heroImages : [service.image]}
+          fit={service.heroImages?.length ? 'contain' : 'cover'}
           alt={service.name}
-          fetchpriority="high"
-          className={`h-full w-full object-cover ${service.imagePosition ?? ''}`}
+          positionClass={service.imagePosition ?? ''}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-forest-950/30 to-forest-950/10" />
         <motion.div

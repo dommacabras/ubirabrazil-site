@@ -18,6 +18,15 @@ export const services = [
     cta: 'Book via WhatsApp',
     icon: 'Anchor',
     image: '/images/kayak.jpg',
+    // Background slideshow on /kayak, shown whole (no crop/stretch).
+    // First photo is the one visitors see on load.
+    heroImages: [
+      '/images/kayak/kayak-01.webp',
+      '/images/kayak/kayak-02.webp',
+      '/images/kayak/kayak-03.webp',
+      '/images/kayak/kayak-04.webp',
+      '/images/kayak/kayak-05.webp',
+    ],
   },
   {
     id: 'surf',
