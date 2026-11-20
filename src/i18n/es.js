@@ -90,7 +90,7 @@ export const es = {
       description: 'Explora canales escondidos y aguas cristalinas.',
       longDescription:
         'Disfruta de una experiencia única en el canal de Barra da Lagoa y en la Lagoa da Conceição. Recorremos en kayak todo el canal de la Barra y hacemos 2 paradas: una en el puente del canal y otra en una playa secreta de la Lagoa da Conceição, a la que solo se llega en kayak. Nuestros guías conocen cada rincón y cada cala tranquila para parar, darse un chapuzón y disfrutar de un día increíble.',
-      features: ['Equipo incluido', 'Opción de merienda después del paseo', 'Opciones al amanecer o al atardecer'],
+      features: ['Equipo incluido', 'Opción de merienda después del paseo (+ R$ 30)', 'Opciones al amanecer o al atardecer'],
       duration: '2 – 4 horas',
       groupSize: '1 – 8 personas',
       cta: 'Reserva por WhatsApp',

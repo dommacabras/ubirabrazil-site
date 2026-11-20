@@ -90,7 +90,7 @@ export const pt = {
       description: 'Explore canais escondidos e águas cristalinas.',
       longDescription:
         'Desfrute dessa experiência única no canal da Barra da Lagoa e na Lagoa da Conceição. Vamos de caiaque por todo o canal da Barra e fazemos 2 paradas: uma na ponte do canal e outra numa praia secreta na Lagoa da Conceição, que só se alcança de caiaque. Nossos guias conhecem cada canto e cada enseada tranquila para parar, dar um mergulho e desfrutar de um dia incrível.',
-      features: ['Equipamento incluso', 'Opção de lanche após o passeio', 'Opções ao nascer ou ao pôr do sol'],
+      features: ['Equipamento incluso', 'Opção de lanche após o passeio (+ R$ 30)', 'Opções ao nascer ou ao pôr do sol'],
       duration: '2 – 4 horas',
       groupSize: '1 – 8 pessoas',
       cta: 'Reserve pelo WhatsApp',

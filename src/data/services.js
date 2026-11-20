@@ -10,7 +10,7 @@ export const services = [
     description: 'Explore hidden canals and crystal clear waters.',
     longDescription:
       'Enjoy a unique experience on the Barra da Lagoa canal and Lagoa da Conceição. We kayak the full length of the Barra canal and make 2 stops: one at the canal bridge and another at a secret beach on Lagoa da Conceição that can only be reached by kayak. Our guides know every corner and every quiet cove to stop for a swim and enjoy an incredible day.',
-    features: ['Equipment included', 'Optional snack after the tour', 'Sunrise / sunset options'],
+    features: ['Equipment included', 'Optional snack after the tour (+ R$ 30)', 'Sunrise / sunset options'],
     priceRange: '$ – $$',
     price: 'US$ 40 / € 35 / R$ 200',
     duration: '2 – 4 hours',
